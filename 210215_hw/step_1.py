@@ -1,11 +1,12 @@
-def parent():
-    print("Printing from the parent() function")
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()
+        print("Something is happening after the function is called.")
+    return wrapper
 
-    def first_child():
-        print("Printing from the first_child() function")
+def say_whee():
+    print("Whee!")
 
-    def second_child():
-        print("Printing from the second_child() function")
-
-    second_child()
-    first_child()
+say_whee = my_decorator(say_whee)
+say_whee()
