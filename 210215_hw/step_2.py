@@ -1,11 +1,16 @@
-def parent(num):
-    def first_child():
-        return "Hi, I am Emma"
+from datetime import datetime
 
-    def second_child():
-        return "Call me Liam"
+def not_during_the_night(func):
+    def wrapper():
+        if 7 <= datetime.now().hour < 22:
+            func()
+        else:
+            pass  # Hush, the neighbors are asleep
+    return wrapper
 
-    if num == 1:
-        return first_child
-    else:
-        return second_child
+def say_whee():
+    print("Whee!")
+
+say_whee = not_during_the_night(say_whee)
+
+say_whee()
